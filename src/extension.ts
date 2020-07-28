@@ -8,7 +8,7 @@ import {
     BinaryTransformer,
     FlatbuffersTransformer,
     HexTransformer,
-    UrlencodeTransformer,
+    UrlencodeTransformer
 } from './transformers/transformers';
 import { Utility } from './utilities/utility';
 import { StringUtils } from './utilities/utilities';
@@ -16,11 +16,10 @@ import { StringUtils } from './utilities/utilities';
 // Order is important for complexity and reliability
 const transformers: Transformer[] = [
     new BinaryTransformer(),
+    new UrlencodeTransformer(),
     new HexTransformer(),
     new Base32Transformer(),
     new Base64Transformer(),
-    new HexTransformer(),
-    new UrlencodeTransformer(),
     // new FlatbuffersTransformer()
 ];
 
