@@ -1,14 +1,32 @@
 {
     "name": "to",
     "displayName": "To",
-    "description": "Encode, decode, format and convert everything",
     "version": "0.0.1",
-    "engines": {
-        "vscode": "^1.47.0"
+    "publisher": "Ami Hollander",
+    "author": {
+        "name": "Ami Hollander",
+        "email": "amih90@gmail.com"
     },
+    "description": "Encode, decode, format and convert everything",
+    "keywords": [
+        "encode",
+        "decode",
+        "format",
+        "convert",
+        "utilities"
+    ],
     "categories": [
         "Other"
     ],
+    "homepage": "https://github.com/amih90/to",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/amih90/to.git"
+    },
+    "engines": {
+        "vscode": "^1.47.0"
+    },
+
     "activationEvents": [
         "*",
         "onCommand:to.base32",
