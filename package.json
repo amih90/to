@@ -13,6 +13,7 @@
         "*",
         "onCommand:to.base32",
         "onCommand:to.base64",
+        "onCommand:to.binary",
         "onCommand:to.flatbuffers",
         "onCommand:to.hex",
         "onCommand:to.urlencode"
@@ -38,6 +39,11 @@
             {
                 "command": "to.base64",
                 "title": "Base64",
+                "category": "To"
+            },
+            {
+                "command": "to.binary",
+                "title": "Binary",
                 "category": "To"
             },
             {

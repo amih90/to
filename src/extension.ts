@@ -5,6 +5,7 @@ import { Transformer } from './transformers/transformer';
 import {
     Base32Transformer,
     Base64Transformer,
+    BinaryTransformer,
     FlatbuffersTransformer,
     HexTransformer,
     UrlencodeTransformer,
@@ -12,8 +13,10 @@ import {
 import { Utility } from './utilities/utility';
 import { StringUtils } from './utilities/utilities';
 
-
+// Order is important for complexity and reliability
 const transformers: Transformer[] = [
+    new BinaryTransformer(),
+    new HexTransformer(),
     new Base32Transformer(),
     new Base64Transformer(),
     new HexTransformer(),
@@ -26,8 +29,6 @@ const utils: Utility[] = [
 ];
 
 export function activate(context: vscode.ExtensionContext) {
-
-
     const codelensProvider = new CodelensProvider(transformers);
     vscode.languages.registerCodeLensProvider("*", codelensProvider);
 
