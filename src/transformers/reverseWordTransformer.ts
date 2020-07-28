@@ -10,7 +10,7 @@ export class ReverseWordTransformer extends Transformer  {
 
 
     public match(input: string): boolean {
-        return false;
+        throw new Error("Not implemented");
     }
 
     public encode(input: string): string {

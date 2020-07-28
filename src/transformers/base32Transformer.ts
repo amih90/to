@@ -8,7 +8,7 @@ export class Base32Transformer extends Transformer  {
     private regex: RegExp;
 
     constructor() {
-        super("base32");
+        super("base32", true);
 
         this.regex = new RegExp("^[A-Z2-7]+=*$");
     }

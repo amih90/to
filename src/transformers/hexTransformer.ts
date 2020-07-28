@@ -7,7 +7,7 @@ export class HexTransformer extends Transformer  {
     private regex: RegExp;
 
     constructor() {
-        super("hex");
+        super("hex", true);
 
         this.regex = new RegExp("^[0-9A-F]+$", 'i');
     }

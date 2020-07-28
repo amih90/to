@@ -7,7 +7,7 @@ import { MyGame } from '../resources/monsters_generated';
 export class FlatbuffersTransformer extends Transformer  {
 
     constructor() {
-        super("flatbuffers");
+        super("flatbuffers", true);
     }
 
 
