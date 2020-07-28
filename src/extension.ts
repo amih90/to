@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { CommandsManager } from './commandsManager';
+import { View } from './view';
 import { CodelensProvider } from './codelensProvider';
 import { Transformer } from './transformers/transformer';
 import {
@@ -28,6 +29,8 @@ const utils: Utility[] = [
 ];
 
 export function activate(context: vscode.ExtensionContext) {
+    const view = new View(context.extensionPath);
+
     const codelensProvider = new CodelensProvider(transformers);
     vscode.languages.registerCodeLensProvider("*", codelensProvider);
 
