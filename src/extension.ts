@@ -3,6 +3,7 @@ import { CommandsManager } from './commandsManager';
 import { CodelensProvider } from './codelensProvider';
 import { Transformer } from './transformers/transformer';
 import {
+    Base32Transformer,
     Base64Transformer,
     FlatbuffersTransformer,
     ReverseWordTransformer,
@@ -11,6 +12,7 @@ import {
 
 
 const transformers: Transformer[] = [
+    new Base32Transformer(),
     new Base64Transformer(),
     new ReverseWordTransformer(),
     new UrlencodeTransformer(),
