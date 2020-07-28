@@ -6,6 +6,7 @@ import {
     Base32Transformer,
     Base64Transformer,
     FlatbuffersTransformer,
+    HexTransformer,
     ReverseWordTransformer,
     UrlencodeTransformer,
 } from './transformers/transformers';
@@ -14,6 +15,7 @@ import {
 const transformers: Transformer[] = [
     new Base32Transformer(),
     new Base64Transformer(),
+    new HexTransformer(),
     new ReverseWordTransformer(),
     new UrlencodeTransformer(),
     // new FlatbuffersTransformer()

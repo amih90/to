@@ -14,6 +14,7 @@
         "onCommand:to.base32",
         "onCommand:to.base64",
         "onCommand:to.flatbuffers",
+        "onCommand:to.hex",
         "onCommand:to.reverseWord",
         "onCommand:to.urlencode"
     ],
@@ -43,6 +44,11 @@
             {
                 "command": "to.base64",
                 "title": "Base64",
+                "category": "To"
+            },
+            {
+                "command": "to.hex",
+                "title": "Hex",
                 "category": "To"
             },
             {
