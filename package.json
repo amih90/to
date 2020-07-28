@@ -12,7 +12,9 @@
     "activationEvents": [
         "*",
         "onCommand:to.reverseWord",
-        "onCommand:to.base64"
+        "onCommand:to.base64",
+        "onCommand:to.urlencode",
+        "onCommand:to.flatbuffers"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -35,6 +37,16 @@
             {
                 "command": "to.base64",
                 "title": "Base64",
+                "category": "To"
+            },
+            {
+                "command": "to.urlencode",
+                "title": "Urlencode",
+                "category": "To"
+            },
+            {
+                "command": "to.flatbuffers",
+                "title": "FlatBuffers",
                 "category": "To"
             }
         ],
@@ -69,6 +81,7 @@
         "vscode-test": "^1.3.0"
     },
     "dependencies": {
+        "@types/flatbuffers": "^1.10.0",
         "flatbuffers": "^1.12.0"
     }
 }
