@@ -5,7 +5,7 @@ import { Transformer } from './transformer';
 export class UrlencodeTransformer extends Transformer  {
 
     constructor() {
-        super("urlencode", true);
+        super("urlencode");
     }
 
 

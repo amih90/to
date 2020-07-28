@@ -60,7 +60,7 @@ export class CodelensProvider implements vscode.CodeLensProvider {
                         }
                     }
 
-                    if (transformer?.codelensEnabled) {
+                    if (transformer) {
                         this.codeLenses.push(new TransformerCodeLens(range, token, transformer));
                     }
                 }
