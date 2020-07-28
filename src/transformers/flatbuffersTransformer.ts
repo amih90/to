@@ -7,7 +7,7 @@ import { MyGame } from '../resources/monsters_generated';
 export class FlatbuffersTransformer extends Transformer  {
 
     constructor() {
-        super("flatbuffers", true);
+        super("flatbuffers");
     }
 
 
@@ -57,7 +57,7 @@ export class FlatbuffersTransformer extends Transformer  {
         MyGame.Sample.Monster.addPos(builder,
                             MyGame.Sample.Vec3.createVec3(builder, 1.0, 2.0, 3.0));
         MyGame.Sample.Monster.addHp(builder, 300);
-        MyGame.Sample.Monster.addColor(builder, MyGame.Sample.Color.Red)
+        MyGame.Sample.Monster.addColor(builder, MyGame.Sample.Color.Red);
         MyGame.Sample.Monster.addName(builder, name);
         MyGame.Sample.Monster.addInventory(builder, inv);
         MyGame.Sample.Monster.addWeapons(builder, weapons);

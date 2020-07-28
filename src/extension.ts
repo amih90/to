@@ -8,9 +8,10 @@ import {
     BinaryTransformer,
     FlatbuffersTransformer,
     HexTransformer,
-    ReverseWordTransformer,
     UrlencodeTransformer,
 } from './transformers/transformers';
+import { Utility } from './utilities/utility';
+import { StringUtils } from './utilities/utilities';
 
 // Order is important for complexity and reliability
 const transformers: Transformer[] = [
@@ -18,16 +19,20 @@ const transformers: Transformer[] = [
     new HexTransformer(),
     new Base32Transformer(),
     new Base64Transformer(),
-    new ReverseWordTransformer(),
+    new HexTransformer(),
     new UrlencodeTransformer(),
     // new FlatbuffersTransformer()
+];
+
+const utils: Utility[] = [
+    new StringUtils(),
 ];
 
 export function activate(context: vscode.ExtensionContext) {
     const codelensProvider = new CodelensProvider(transformers);
     vscode.languages.registerCodeLensProvider("*", codelensProvider);
 
-    CommandsManager.registerCommands(context, transformers);
+    CommandsManager.registerCommands(context, transformers, utils);
 
     vscode.commands.registerCommand("to.enableCodeLens", () => {
         vscode.workspace.getConfiguration("to").update("enableCodeLens", true, true);

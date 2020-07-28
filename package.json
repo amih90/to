@@ -16,7 +16,6 @@
         "onCommand:to.binary",
         "onCommand:to.flatbuffers",
         "onCommand:to.hex",
-        "onCommand:to.reverseWord",
         "onCommand:to.urlencode"
     ],
     "main": "./out/extension.js",
@@ -30,11 +29,6 @@
             {
                 "title": "Disable Codelens",
                 "command": "to.disableCodeLens",
-                "category": "To"
-            },
-            {
-                "command": "to.reverseWord",
-                "title": "Reverse Word",
                 "category": "To"
             },
             {
@@ -65,6 +59,46 @@
             {
                 "command": "to.flatbuffers",
                 "title": "FlatBuffers",
+                "category": "To"
+            },
+            {
+                "command": "to.string.reverse",
+                "title": "String.reverse",
+                "category": "To"
+            },
+            {
+                "command": "to.string.lowerCase",
+                "title": "String.lowerCase",
+                "category": "To"
+            },
+            {
+                "command": "to.string.upperCase",
+                "title": "String.upperCase",
+                "category": "To"
+            },
+            {
+                "command": "to.string.snakeCase",
+                "title": "String.snakeCase",
+                "category": "To"
+            },
+            {
+                "command": "to.string.camelCase",
+                "title": "String.camelCase",
+                "category": "To"
+            },
+            {
+                "command": "to.string.kebabCase",
+                "title": "String.kebabCase",
+                "category": "To"
+            },
+            {
+                "command": "to.string.deburr",
+                "title": "String.deburr",
+                "category": "To"
+            },
+            {
+                "command": "to.string.trim",
+                "title": "String.trim",
                 "category": "To"
             }
         ],
@@ -101,6 +135,7 @@
     "dependencies": {
         "@ctrl/ts-base32": "^1.2.2",
         "@types/flatbuffers": "^1.10.0",
+        "@types/lodash": "^4.14.158",
         "flatbuffers": "^1.12.0"
     }
 }

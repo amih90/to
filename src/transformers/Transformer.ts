@@ -1,12 +1,10 @@
 import ITransformer from './iTransformer';
 
 export abstract class Transformer implements ITransformer {
-    public name: string;
-    readonly codelensEnabled: boolean;
+    public readonly name: string;
 
-    constructor(name: string, codelens: boolean = false) {
+    constructor(name: string) {
         this.name = name;
-        this.codelensEnabled = codelens;
     }
 
     match(input: string): boolean {

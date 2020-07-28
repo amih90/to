@@ -7,7 +7,7 @@ export class BinaryTransformer extends Transformer  {
     private regex: RegExp;
 
     constructor() {
-        super("binary", true);
+        super("binary");
 
         this.regex = new RegExp("^([01 ]{1,8})+$");
 
