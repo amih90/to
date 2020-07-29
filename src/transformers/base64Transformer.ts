@@ -9,12 +9,11 @@ export class Base64Transformer extends Transformer  {
     constructor() {
         super("base64");
 
-        this.regex = new RegExp("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
+        this.regex = new RegExp("^(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
     }
 
-
     public match(input: string): boolean {
-        return this.regex.test(input);
+        return input === this.encode(this.decode(input)) && this.regex.test(input);
     }
 
     public encode(input: string): string {

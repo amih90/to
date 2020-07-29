@@ -8,9 +8,8 @@ export class UrlencodeTransformer extends Transformer  {
         super("urlencode");
     }
 
-
     public match(input: string): boolean {
-        return input !== decodeURIComponent(input);
+        return input !== this.decode(input);
     }
 
     public encode(input: string): string {
