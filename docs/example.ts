@@ -6,10 +6,12 @@
 "%3Fhello%3DWorld"
 */
 
+// hello-world
 export class Example {
 
     constructor() {
-        // Comment déjà vu
+        // Comment deja vu
         console.log("Hello World!");
+        console.log("SGVsbG8gV29ybGQh");
     }
 }
