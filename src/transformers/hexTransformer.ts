@@ -14,7 +14,7 @@ export class HexTransformer extends Transformer  {
 
 
     public match(input: string): boolean {
-        return this.regex.test(input);
+        return input === this.encode(this.decode(input)) && this.regex.test(input);
     }
 
     public encode(input: string): string {

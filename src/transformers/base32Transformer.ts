@@ -13,9 +13,8 @@ export class Base32Transformer extends Transformer  {
         this.regex = new RegExp("^[A-Z2-7]+=*$");
     }
 
-
     public match(input: string): boolean {
-        return this.regex.test(input);
+        return input === this.encode(this.decode(input)) && this.regex.test(input);
     }
 
     public encode(input: string): string {
