@@ -13,6 +13,10 @@ export class Base64Transformer extends Transformer  {
     }
 
     public match(input: string): boolean {
+        if (!input) {
+            return false;
+        }
+
         return input === this.encode(this.decode(input)) && this.regex.test(input);
     }
 

@@ -14,7 +14,13 @@ export class Base32Transformer extends Transformer  {
     }
 
     public match(input: string): boolean {
-        return input === this.encode(this.decode(input)) && this.regex.test(input);
+        try {
+            this.encode(this.decode(input));
+        } catch {
+            return false;
+        }
+
+        return this.regex.test(input);
     }
 
     public encode(input: string): string {
@@ -25,3 +31,4 @@ export class Base32Transformer extends Transformer  {
         return Buffer.from(base32Decode(input)).toString();
     }
 }
+
