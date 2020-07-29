@@ -5,11 +5,11 @@
 
 "%3Fhello%3DWorld"
 */
+
 export class Example {
 
     constructor() {
         // Comment déjà vu
         console.log("Hello World!");
     }
-
 }

@@ -26,7 +26,6 @@
     "engines": {
         "vscode": "^1.47.0"
     },
-
     "activationEvents": [
         "*",
         "onCommand:to.base32",
@@ -131,11 +130,14 @@
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
+        "clean": "rm -rf out || rmdir out /s /q",
         "compile": "tsc -p ./",
         "lint": "eslint src --ext ts",
         "watch": "tsc -watch -p ./",
         "pretest": "npm run compile && npm run lint",
-        "test": "node ./out/test/runTest.js"
+        "test": "node ./out/test/runTest.js",
+        "package": "npm run clean && vsce package",
+        "package-and-install": "npm run package && node ./.vscode/install-package.js"
     },
     "devDependencies": {
         "@types/vscode": "^1.47.0",
@@ -154,6 +156,7 @@
         "@ctrl/ts-base32": "^1.2.2",
         "@types/flatbuffers": "^1.10.0",
         "@types/lodash": "^4.14.158",
-        "flatbuffers": "^1.12.0"
+        "flatbuffers": "^1.12.0",
+        "lodash": "^4.17.19"
     }
 }
