@@ -2,6 +2,8 @@
 
 Encode, decode, format and convert everything
 
+![Recording of To](https://github.com/amih90/to/blob/master/docs/to.gif?raw=true)
+
 ## Features
 
 * String utility:
