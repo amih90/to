@@ -31,7 +31,6 @@
         "onCommand:to.base32",
         "onCommand:to.base64",
         "onCommand:to.binary",
-        "onCommand:to.flatbuffers",
         "onCommand:to.hex",
         "onCommand:to.urlencode"
     ],
@@ -71,11 +70,6 @@
             {
                 "command": "to.urlencode",
                 "title": "Urlencode",
-                "category": "To"
-            },
-            {
-                "command": "to.flatbuffers",
-                "title": "FlatBuffers",
                 "category": "To"
             },
             {
