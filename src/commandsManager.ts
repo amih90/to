@@ -17,12 +17,13 @@ export class CommandsManager {
                 }
 
                 const document = textEditor.document;
-                const selection = textEditor.selection;
-
-                const token = document.getText(selection);
 
                 textEditor.edit(editBuilder  => {
-                    editBuilder.replace(selection, transformer.encode(token));
+                    textEditor.selections.forEach(selection => {
+                        const token = document.getText(selection);
+                        editBuilder.replace(selection, transformer.encode(token));
+                    });
+
                 });
             });
 
@@ -43,12 +44,12 @@ export class CommandsManager {
                     }
 
                     const document = textEditor.document;
-                    const selection = textEditor.selection;
-
-                    const token = document.getText(selection);
 
                     textEditor.edit(editBuilder  => {
-                        editBuilder.replace(selection,  (<any>utility)[key](token));
+                        textEditor.selections.forEach(selection => {
+                            const token = document.getText(selection);
+                            editBuilder.replace(selection,  (<any>utility)[key](token));
+                        });
                     });
                 });
 

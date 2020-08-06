@@ -15,7 +15,11 @@ export class Base32Transformer extends Transformer  {
 
     public match(input: string): boolean {
         try {
-            return input === this.encode(this.decode(input)) && this.regex.test(input);
+            const decodedInput = this.decode(input);
+
+            return this.isAscii(decodedInput) &&
+                input === this.encode(this.decode(input)) &&
+                this.regex.test(input);
         } catch {
             return false;
         }

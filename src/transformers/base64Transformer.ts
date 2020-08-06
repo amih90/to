@@ -17,7 +17,11 @@ export class Base64Transformer extends Transformer  {
             return false;
         }
 
-        return input === this.encode(this.decode(input)) && this.regex.test(input);
+        const decodedInput = this.decode(input);
+
+        return this.isAscii(decodedInput) &&
+                input === this.encode(decodedInput) &&
+                this.regex.test(input);
     }
 
     public encode(input: string): string {
