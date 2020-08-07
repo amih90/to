@@ -4,17 +4,10 @@ import { Transformer } from './transformer';
 
 export class BinaryTransformer extends Transformer  {
 
-    private regex: RegExp;
-
     constructor() {
-        super("binary");
+        const regex = new RegExp("^([01 ]{1,8})+$");
 
-        this.regex = new RegExp("^([01 ]{1,8})+$");
-
-    }
-
-    public match(input: string): boolean {
-        return this.regex.test(input);
+        super("binary", regex);
     }
 
     public encode(input: string): string {

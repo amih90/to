@@ -5,21 +5,15 @@ import { Transformer } from './transformer';
 
 export class Base32Transformer extends Transformer  {
 
-    private regex: RegExp;
-
     constructor() {
-        super("base32");
+        const regex = new RegExp("^[A-Z2-7]+=*$");
 
-        this.regex = new RegExp("^[A-Z2-7]+=*$");
+        super("base32", regex);
     }
 
     public match(input: string): boolean {
         try {
-            const decodedInput = this.decode(input);
-
-            return this.isAscii(decodedInput) &&
-                input === this.encode(this.decode(input)) &&
-                this.regex.test(input);
+            return super.match(input);
         } catch {
             return false;
         }

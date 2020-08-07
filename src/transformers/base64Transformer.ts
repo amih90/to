@@ -4,24 +4,10 @@ import { Transformer } from './transformer';
 
 export class Base64Transformer extends Transformer  {
 
-    private regex: RegExp;
-
     constructor() {
-        super("base64");
+        const regex = new RegExp("^(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
 
-        this.regex = new RegExp("^(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
-    }
-
-    public match(input: string): boolean {
-        if (!input) {
-            return false;
-        }
-
-        const decodedInput = this.decode(input);
-
-        return this.isAscii(decodedInput) &&
-                input === this.encode(decodedInput) &&
-                this.regex.test(input);
+        super("base64", regex);
     }
 
     public encode(input: string): string {

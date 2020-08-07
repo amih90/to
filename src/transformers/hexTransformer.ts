@@ -4,17 +4,10 @@ import { Transformer } from './transformer';
 
 export class HexTransformer extends Transformer  {
 
-    private regex: RegExp;
-
     constructor() {
-        super("hex");
+        const regex = new RegExp("^[0-9A-F]+$", 'i');
 
-        this.regex = new RegExp("^[0-9A-F]+$", 'i');
-    }
-
-
-    public match(input: string): boolean {
-        return input === this.encode(this.decode(input)) && this.regex.test(input);
+        super("hex", regex);
     }
 
     public encode(input: string): string {

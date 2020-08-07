@@ -5,11 +5,20 @@ import { Transformer } from './transformer';
 export class UrlencodeTransformer extends Transformer  {
 
     constructor() {
-        super("urlencode");
+        const regex = new RegExp("^[A-Za-z0-9%./]+=[^\s]+");
+
+        super("urlencode", regex);
     }
 
     public match(input: string): boolean {
-        return input !== this.decode(input);
+        if (!input) {
+            return false;
+        }
+
+        const decodedInput = this.decode(input);
+
+        return this.isUTF8(decodedInput) &&
+            input !== decodedInput;
     }
 
     public encode(input: string): string {

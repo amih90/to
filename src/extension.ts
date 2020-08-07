@@ -6,7 +6,7 @@ import {
     Base32Transformer,
     Base64Transformer,
     BinaryTransformer,
-    FlatbuffersTransformer,
+    // FlatbuffersTransformer,
     HexTransformer,
     UrlencodeTransformer
 } from './transformers/transformers';
