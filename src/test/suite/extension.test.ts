@@ -1,15 +1,37 @@
 import * as assert from 'assert';
 
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
 import * as vscode from 'vscode';
-// import * as myExtension from '../../extension';
+
+import * as transformer from '../../transformers/transformers';
 
 suite('Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
 
-	test('Sample test', () => {
-		assert.equal(-1, [1, 2, 3].indexOf(5));
-		assert.equal(-1, [1, 2, 3].indexOf(0));
+	test('Base32 test', () => {
+        const base32Transformer = new transformer.Base32Transformer();
+
+        assert.equal(false, base32Transformer.match(""));
+        assert.equal(false, base32Transformer.match(" "));
+        assert.equal(false, base32Transformer.match(" a"));
+        assert.equal(false, base32Transformer.match("a "));
+
+        assert.equal(false, base32Transformer.match("AAAAA3A="), "Check empty string");
+
+        assert.equal(true, base32Transformer.match("GE======"), "Check integer - `1`");
+        assert.equal(true, base32Transformer.match("JBSWY3DP"), "Check string - `Hello`");
+    });
+
+    test('Base64 test', () => {
+        const base64Transformer = new transformer.Base64Transformer();
+
+        assert.equal(false, base64Transformer.match(""));
+        assert.equal(false, base64Transformer.match(" "));
+        assert.equal(false, base64Transformer.match(" a"));
+        assert.equal(false, base64Transformer.match("a "));
+
+        assert.equal(false, base64Transformer.match("AAAAA3A="), "Check empty string");
+
+        assert.equal(true, base64Transformer.match("MQ=="), "Check integer - `1`");
+        assert.equal(true, base64Transformer.match("SGVsbG8="), "Check string - `Hello`");
 	});
 });

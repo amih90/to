@@ -5,7 +5,7 @@ import { Transformer } from './transformer';
 export class Base64Transformer extends Transformer  {
 
     constructor() {
-        const regex = new RegExp("^(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
+        const regex = new RegExp("^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?");
 
         super("base64", regex);
     }
