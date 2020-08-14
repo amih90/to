@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { copyToClipboard, getNonce } from './utils';
+import { copyToClipboard, getNonce, standardiseCspSource } from './utils';
 
 
 export class View implements vscode.Disposable {
@@ -17,12 +17,12 @@ export class View implements vscode.Disposable {
             enableScripts: true,
         });
 
-        this.panel.iconPath = this.getResourcesUri('webview-icon.svg');
+        this.panel.iconPath = this.getResourcesUri('icon.svg');
 
         // Dispose this View when the Webview is disposed
         this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
 
-        this.panel.webview.html = this.getHtmlForWebview();
+        this.panel.webview.html = this.getWebviewContent();
     }
 
     public dispose() {
@@ -32,26 +32,77 @@ export class View implements vscode.Disposable {
 
     }
 
-    private getHtmlForWebview() {
+    //<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src vscode-resource: https:; script-src 'nonce-${nonce}';">
+    // <link rel="stylesheet" type="text/css" href="${this.getMediaUri('out.min.css')}">
+    // <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:; connect-src 'self'; font-src 'self'; style-src ${standardiseCspSource(this.panel.webview.cspSource)} 'unsafe-inline'; script-src 'nonce-${nonce}'; img-src 'self' blob: data:;;">
+    // <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src	'self' 'unsafe-inline' *; img-src 'self' data: *">
+
+    private getWebviewContent() {
         const nonce = getNonce();
-
-        let body;
-
-        body = `<body>
-            <h2>View</h2>
-            <p>view view</p>
-            </body>`;
-
         return `<!DOCTYPE html>
             <html lang="en">
                 <head>
                     <meta charset="UTF-8">
-                    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${standardiseCspSource(this.panel.webview.cspSource)} 'unsafe-inline'; script-src 'nonce-${nonce}'; img-src data:;">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link rel="stylesheet" type="text/css" href="${this.getMediaUri('out.min.css')}">
-                    <title>Git Graph</title>
+                    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:; connect-src 'self'; font-src 'self'; style-src ${standardiseCspSource(this.panel.webview.cspSource)} 'unsafe-inline'; script-src 'nonce-${nonce}'; img-src 'self' data: *;">
+                    <link rel="stylesheet" type="text/css" href="${this.getMediaUri('main.css')}">
+                    <title>View</title>
+                    <style>
+                    pre {
+                        background: #303030;
+                        color: #f1f1f1;
+                        padding: 10px 16px;
+                        border-radius: 2px;
+                        border-top: 4px solid #00aeef;
+                        counter-reset: line;
+                    }
+
+                    pre span {
+                        display: block;
+                        line-height: 1.5rem;
+                    }
+
+                    pre span:before {
+                        counter-increment: line;
+                        content: counter(line);
+                        display: inline-block;
+                        border-right: 1px solid #ddd;
+                        padding: 0 .5em;
+                        margin-right: .5em;
+                        color: #888
+                    }
+                    </style>
                 </head>
-                ${body}
+                <body>
+                    <h2>View</h2>
+                    <p>view view</p>
+                    <div style='display: flex; flex-direction: row;'>
+                        <div>
+                            <pre>
+                                <span>lorem ipsum</span>
+                                <span>&gt;&gt; lorem ipsum</span>
+                                <span>lorem ipsum,\ </span>
+                                <span>lorem ipsum.</span>
+                                <span>&gt;&gt; lorem ipsum</span>
+                                <span>lorem ipsum</span>
+                                <span>lorem ipsum</span>
+                                <span>lorem ipsum</span>
+                            </pre>
+                        </div>
+                        <div>
+                            <pre>
+                                <span>lorem ipsum</span>
+                                <span>&gt;&gt; lorem ipsum</span>
+                                <span>lorem ipsum,\ </span>
+                                <span>lorem ipsum.</span>
+                                <span>&gt;&gt; lorem ipsum</span>
+                                <span>lorem ipsum</span>
+                                <span>lorem ipsum</span>
+                                <span>lorem ipsum</span>
+                            </pre>
+                        </div>
+                    </div>
+                </body>
             </html>`;
     }
 
@@ -68,19 +119,3 @@ export class View implements vscode.Disposable {
     }
 }
 
-/**
- * Standardise the CSP Source provided by Visual Studio Code for use with the Webview. It is idempotent unless called with http/https URI's, in which case it keeps only the authority portion of the http/https URI. This is necessary to be compatible with some web browser environments.
- * @param cspSource The value provide by Visual Studio Code.
- * @returns The standardised CSP Source.
- */
-export function standardiseCspSource(cspSource: string) {
-    if (cspSource.startsWith('http://') || cspSource.startsWith('https://')) {
-        const pathIndex = cspSource.indexOf('/', 8), queryIndex = cspSource.indexOf('?', 8), fragmentIndex = cspSource.indexOf('#', 8);
-        let endOfAuthorityIndex = pathIndex;
-        if (queryIndex > -1 && (queryIndex < endOfAuthorityIndex || endOfAuthorityIndex === -1)) endOfAuthorityIndex = queryIndex;
-        if (fragmentIndex > -1 && (fragmentIndex < endOfAuthorityIndex || endOfAuthorityIndex === -1)) endOfAuthorityIndex = fragmentIndex;
-        return endOfAuthorityIndex > -1 ? cspSource.substring(0, endOfAuthorityIndex) : cspSource;
-    } else {
-        return cspSource;
-    }
-}

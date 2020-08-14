@@ -1,7 +1,7 @@
 {
     "name": "to",
     "displayName": "To",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "publisher": "amih90",
     "author": {
         "name": "Ami Hollander",
@@ -18,6 +18,7 @@
     "categories": [
         "Other"
     ],
+    "icon": "resources/icon.png",
     "homepage": "https://github.com/amih90/to",
     "repository": {
         "type": "git",

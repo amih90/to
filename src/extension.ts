@@ -29,7 +29,7 @@ const utils: Utility[] = [
 ];
 
 export function activate(context: vscode.ExtensionContext) {
-    const view = new View(context.extensionPath);
+    // const view = new View(context.extensionPath);
 
     const codelensProvider = new CodelensProvider(transformers);
     vscode.languages.registerCodeLensProvider("*", codelensProvider);
