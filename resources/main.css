@@ -1,10 +1,17 @@
-pre {
+/* pre {
+    counter-reset: line;
+
+    font-family: monospace;
     background: #303030;
     color: #f1f1f1;
-    padding: 10px 16px;
-    border-radius: 2px;
+    border-radius: .25em;
     border-top: 4px solid #00aeef;
-    counter-reset: line;
+    line-height: 0;
+
+    width: em(440);
+    margin: 4em auto;
+    padding: 1em;
+    box-shadow: .1em .1em .5em rgba(0,0,0,.45);
 }
 
 pre span {
@@ -20,4 +27,4 @@ pre span:before {
     padding: 0 .5em;
     margin-right: .5em;
     color: #888
-}
+} */

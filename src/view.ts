@@ -23,6 +23,30 @@ export class View implements vscode.Disposable {
         this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
 
         this.panel.webview.html = this.getWebviewContent();
+
+        // // Update the content based on view changes
+        // this.panel.onDidChangeViewState(
+        //     e => {
+        //         if (this.panel.visible) {
+        //             this._update();
+        //         }
+        //     },
+        //     null,
+        //     this.disposables
+        // );
+
+        // Handle messages from the webview
+        this.panel.webview.onDidReceiveMessage(
+            message => {
+                switch (message.command) {
+                    case 'alert':
+                        vscode.window.showErrorMessage(message.text);
+                        return;
+                }
+            },
+            null,
+            this.disposables
+        );
     }
 
     public dispose() {
@@ -38,42 +62,31 @@ export class View implements vscode.Disposable {
     // <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src	'self' 'unsafe-inline' *; img-src 'self' data: *">
 
     private getWebviewContent() {
+        // Local path to main script run in the webview
+        const scriptPathOnDisk = vscode.Uri.joinPath(this.getUri('resources', 'main.js'));
+        // And the uri we use to load this script in the webview
+        const scriptUri = this.panel.webview.asWebviewUri(scriptPathOnDisk);
+
+        const stylePathOnDisk = vscode.Uri.joinPath(this.getUri('resources', 'main.css'));
+        const styleUri = this.panel.webview.asWebviewUri(stylePathOnDisk);
+
+        const prismCssPathOnDisk = vscode.Uri.joinPath(this.getUri('resources', 'prism.css'));
+        const prismCssUri = this.panel.webview.asWebviewUri(prismCssPathOnDisk);
+        const prismJsPathOnDisk = vscode.Uri.joinPath(this.getUri('resources', 'prism.js'));
+        const prismJsUri = this.panel.webview.asWebviewUri(prismJsPathOnDisk);
+
         const nonce = getNonce();
         return `<!DOCTYPE html>
             <html lang="en">
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:; connect-src 'self'; font-src 'self'; style-src ${standardiseCspSource(this.panel.webview.cspSource)} 'unsafe-inline'; script-src 'nonce-${nonce}'; img-src 'self' data: *;">
-                    <link rel="stylesheet" type="text/css" href="${this.getMediaUri('main.css')}">
+                    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: content:; connect-src 'self'; font-src 'self'; style-src 'self' ${standardiseCspSource(this.panel.webview.cspSource)} 'unsafe-inline'; script-src 'nonce-${nonce}'; img-src 'self' data: *;">
+                    <link rel="stylesheet" type="text/css" href="${prismCssUri}" />
+                    <link rel="stylesheet" type="text/css" href="${styleUri}">
                     <title>View</title>
-                    <style>
-                    pre {
-                        background: #303030;
-                        color: #f1f1f1;
-                        padding: 10px 16px;
-                        border-radius: 2px;
-                        border-top: 4px solid #00aeef;
-                        counter-reset: line;
-                    }
-
-                    pre span {
-                        display: block;
-                        line-height: 1.5rem;
-                    }
-
-                    pre span:before {
-                        counter-increment: line;
-                        content: counter(line);
-                        display: inline-block;
-                        border-right: 1px solid #ddd;
-                        padding: 0 .5em;
-                        margin-right: .5em;
-                        color: #888
-                    }
-                    </style>
                 </head>
-                <body>
+                <body class="line-numbers">
                     <h2>View</h2>
                     <p>view view</p>
                     <div style='display: flex; flex-direction: row;'>
@@ -89,19 +102,17 @@ export class View implements vscode.Disposable {
                                 <span>lorem ipsum</span>
                             </pre>
                         </div>
-                        <div>
-                            <pre>
-                                <span>lorem ipsum</span>
-                                <span>&gt;&gt; lorem ipsum</span>
-                                <span>lorem ipsum,\ </span>
-                                <span>lorem ipsum.</span>
-                                <span>&gt;&gt; lorem ipsum</span>
-                                <span>lorem ipsum</span>
-                                <span>lorem ipsum</span>
-                                <span>lorem ipsum</span>
-                            </pre>
+                        <div style='display: flex; flex-direction: column;'>
+                            <button id="button" onclick="setCaret()">focus</button>
+                            <button>b</button>
                         </div>
+                        <pre onPaste="setTimeout(function() {onPaste();}, 0)" id="editable" contenteditable>
+                            <code id="yaml" class="language-yaml"></code>
+                        </pre>
                     </div>
+
+                    <script nonce="${nonce}" src="${scriptUri}"></script>
+                    <script nonce="${nonce}" src="${prismJsUri}"></script>
                 </body>
             </html>`;
     }
