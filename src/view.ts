@@ -76,40 +76,38 @@ export class View implements vscode.Disposable {
         const prismJsUri = this.panel.webview.asWebviewUri(prismJsPathOnDisk);
 
         const nonce = getNonce();
+
+
+        const text = `services:
+        webapp:
+            build: ./dir`;
+
         return `<!DOCTYPE html>
             <html lang="en">
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: content:; connect-src 'self'; font-src 'self'; style-src 'self' ${standardiseCspSource(this.panel.webview.cspSource)} 'unsafe-inline'; script-src 'nonce-${nonce}'; img-src 'self' data: *;">
+                    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: content:; connect-src 'self'; font-src 'self'; style-src 'self' ${standardiseCspSource(this.panel.webview.cspSource)} 'unsafe-inline'; script-src 'nonce-${nonce}' unsafe-inline; img-src 'self' data: *;">
                     <link rel="stylesheet" type="text/css" href="${prismCssUri}" />
                     <link rel="stylesheet" type="text/css" href="${styleUri}">
                     <title>View</title>
                 </head>
-                <body class="line-numbers">
+                <body class="language-markup">
                     <h2>View</h2>
                     <p>view view</p>
                     <div style='display: flex; flex-direction: row;'>
-                        <div>
-                            <pre>
-                                <span>lorem ipsum</span>
-                                <span>&gt;&gt; lorem ipsum</span>
-                                <span>lorem ipsum,\ </span>
-                                <span>lorem ipsum.</span>
-                                <span>&gt;&gt; lorem ipsum</span>
-                                <span>lorem ipsum</span>
-                                <span>lorem ipsum</span>
-                                <span>lorem ipsum</span>
-                            </pre>
-                        </div>
+                        <pre class="line-numbers" id="editable-left" contenteditable>
+                            <code id="yaml1" class="language-yaml">${text}</code>
+                        </pre>
                         <div style='display: flex; flex-direction: column;'>
-                            <button id="button" onclick="setCaret()">focus</button>
-                            <button>b</button>
+                            <button id="button">focus</button>
+                            <button id="clear">clear</button>
                         </div>
-                        <pre onPaste="setTimeout(function() {onPaste();}, 0)" id="editable" contenteditable>
-                            <code id="yaml" class="language-yaml"></code>
+                        <pre class="line-numbers" id="editable-right" contenteditable>
+                            <code id="yaml" class="language-yaml" style="width='500px'; height='500px'">${text}</code>
                         </pre>
                     </div>
+                    <textarea class="prism-live language-yaml">${text}</textarea>
 
                     <script nonce="${nonce}" src="${scriptUri}"></script>
                     <script nonce="${nonce}" src="${prismJsUri}"></script>
