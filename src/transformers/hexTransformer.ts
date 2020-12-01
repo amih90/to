@@ -1,20 +1,18 @@
 import * as vscode from 'vscode';
-import { Transformer } from './transformer';
+import { Transformer } from './Transformer';
 
+export class HexTransformer extends Transformer {
+  constructor() {
+    const regex = new RegExp('^[0-9A-F]+$', 'i');
 
-export class HexTransformer extends Transformer  {
+    super('hex', regex);
+  }
 
-    constructor() {
-        const regex = new RegExp("^[0-9A-F]+$", 'i');
+  public encode(input: string): string {
+    return Buffer.from(input, 'utf8').toString('hex');
+  }
 
-        super("hex", regex);
-    }
-
-    public encode(input: string): string {
-        return Buffer.from(input, 'utf8').toString('hex');
-    }
-
-    public decode(input: string): string {
-        return Buffer.from(input, 'hex').toString('utf8');
-    }
+  public decode(input: string): string {
+    return Buffer.from(input, 'hex').toString('utf8');
+  }
 }

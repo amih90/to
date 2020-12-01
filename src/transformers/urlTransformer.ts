@@ -1,31 +1,28 @@
 import * as vscode from 'vscode';
-import { Transformer } from './transformer';
+import { Transformer } from './Transformer';
 
+export class UrlencodeTransformer extends Transformer {
+  constructor() {
+    const regex = new RegExp('^[A-Za-z0-9%./]+=[^s]+');
 
-export class UrlencodeTransformer extends Transformer  {
+    super('urlencode', regex);
+  }
 
-    constructor() {
-        const regex = new RegExp("^[A-Za-z0-9%./]+=[^\s]+");
-
-        super("urlencode", regex);
+  public match(input: string): boolean {
+    if (!input) {
+      return false;
     }
 
-    public match(input: string): boolean {
-        if (!input) {
-            return false;
-        }
+    const decodedInput = this.decode(input);
 
-        const decodedInput = this.decode(input);
+    return this.isUTF8(decodedInput) && input !== decodedInput;
+  }
 
-        return this.isUTF8(decodedInput) &&
-            input !== decodedInput;
-    }
+  public encode(input: string): string {
+    return encodeURIComponent(input);
+  }
 
-    public encode(input: string): string {
-        return encodeURIComponent(input);
-    }
-
-    public decode(input: string): string {
-        return decodeURIComponent(input);
-    }
+  public decode(input: string): string {
+    return decodeURIComponent(input);
+  }
 }

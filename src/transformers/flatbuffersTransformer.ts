@@ -1,15 +1,13 @@
 // import * as vscode from 'vscode';
 // import { flatbuffers } from "flatbuffers";
-// import { Transformer } from './transformer';
+// import { Transformer } from './Transformer';
 // import { MyGame } from '../resources/monsters_generated';
-
 
 // export class FlatbuffersTransformer extends Transformer  {
 
 //     constructor() {
 //         super("flatbuffers");
 //     }
-
 
 //     public match(input: string): boolean {
 //         return true; // FIXME
