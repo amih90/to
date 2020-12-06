@@ -1,7 +1,7 @@
 {
     "name": "to",
     "displayName": "To",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "publisher": "amih90",
     "author": {
         "name": "Ami Hollander",
@@ -79,17 +79,17 @@
             },
             {
                 "command": "to.string.lowerCase",
-                "title": "String.lowerCase",
+                "title": "String.lowercase",
                 "category": "To"
             },
             {
                 "command": "to.string.upperCase",
-                "title": "String.upperCase",
+                "title": "String.UPPERCASE",
                 "category": "To"
             },
             {
                 "command": "to.string.snakeCase",
-                "title": "String.snakeCase",
+                "title": "String.snake_case",
                 "category": "To"
             },
             {
@@ -99,7 +99,7 @@
             },
             {
                 "command": "to.string.kebabCase",
-                "title": "String.kebabCase",
+                "title": "String.kebab-case",
                 "category": "To"
             },
             {
@@ -110,6 +110,16 @@
             {
                 "command": "to.string.trim",
                 "title": "String.trim",
+                "category": "To"
+            },
+            {
+                "command": "to.string.pascalCase",
+                "title": "String.PascalCase",
+                "category": "To"
+            },
+            {
+                "command": "to.string.allCaps",
+                "title": "String.ALL_CAPS",
                 "category": "To"
             }
         ],

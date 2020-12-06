@@ -7,6 +7,7 @@ import {
     Base64Transformer,
     BinaryTransformer,
     // FlatbuffersTransformer,
+    DateTransformer,
     HexTransformer,
     UrlencodeTransformer
 } from './transformers/transformers';
@@ -20,6 +21,7 @@ const transformers: Transformer[] = [
     new HexTransformer(),
     new Base32Transformer(),
     new Base64Transformer(),
+    new DateTransformer(),
     // new FlatbuffersTransformer()
 ];
 

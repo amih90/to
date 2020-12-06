@@ -5,7 +5,7 @@ import { Transformer } from './transformer';
 export class DateTransformer extends Transformer  {
 
     constructor() {
-        const regex = new RegExp("^-?\d{9,20}|\d{10,20}$", 'i');
+        const regex = new RegExp("^-?\\d{9,20}|\\d{10,20}$", 'i');
 
         super("date", regex);
     }
@@ -15,6 +15,6 @@ export class DateTransformer extends Transformer  {
     }
 
     public decode(input: string): string {
-        return new Date(input).toDateString();
+        return new Date(parseInt(input)).toISOString();
     }
 }

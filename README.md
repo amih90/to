@@ -7,14 +7,16 @@ Encode, decode, format and convert everything
 ## Features
 
 * String utility:
-  * Camel case
+  * Camel case - camelCase
   * Deburr
-  * Kebab case
-  * Lower case
-  * Reverse
-  * Snake case
-  * Trim
-  * Upper case
+  * Kebab case - kebab-case
+  * Lower case - lowercase
+  * Reverse - esrever
+  * Snake case - snake_case
+  * Trim - 'trim'
+  * Upper case - UPPERCASE
+  * Pascal case - PascalCase
+  * All caps - ALL_CAPS
 
 * Transformers:
   * Base32
@@ -24,8 +26,6 @@ Encode, decode, format and convert everything
   * Url
 
 ## Requirements
-
-TBD
 
 ## Extension Settings
 
@@ -41,11 +41,17 @@ This extension contributes the following settings:
 
 "%3Fhello%3DWorld"
 
+
+
 ## Known Issues
 
 TBD
 
 ## Release Notes
+
+### 0.0.8
+- Added ALL_CAPS, PascalCase
+- Added Date transformer
 
 ### 0.0.1
 
