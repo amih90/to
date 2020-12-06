@@ -40,5 +40,13 @@ export class StringUtils extends Utility {
     public upperCase(input: string): string {
         return input.toUpperCase();
     }
+
+    public pascalCase(input: string): string {
+        return _.upperFirst(_.camelCase(input));
+    }
+
+    public allCaps(input: string): string {
+        return this.snakeCase(input).toUpperCase();
+    }
 }
 

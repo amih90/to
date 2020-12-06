@@ -1,8 +1,9 @@
 import ITransformer from './iTransformer';
 
 export abstract class Transformer implements ITransformer {
-    private readonly regex_utf8: RegExp;
+    private static MIN_LENGTH =  5;
 
+    private readonly regex_utf8: RegExp;
     public readonly name: string;
     protected regex: RegExp;
 
@@ -19,7 +20,8 @@ export abstract class Transformer implements ITransformer {
 
         const decodedInput = this.decode(input);
 
-        return this.isUTF8(decodedInput) &&
+        return decodedInput.length > Transformer.MIN_LENGTH &&
+                this.isUTF8(decodedInput) &&
                 input === this.encode(decodedInput) &&
                 this.regex.test(input);
     }
