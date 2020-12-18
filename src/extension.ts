@@ -43,8 +43,14 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.workspace.getConfiguration("to").update("enableCodeLens", false, true);
     });
 
-    vscode.commands.registerCommand("to.codelensAction", (args: any) => {
-        vscode.window.showInformationMessage(`CodeLens action clicked with args=${args}`);
+    vscode.commands.registerCommand('to.codelensAction', (arg: any) => {
+      vscode.env.clipboard
+        .writeText(arg)
+        .then(() =>
+          vscode.window.showInformationMessage(
+            'Copied decoded text to clipboard!'
+          )
+        );
     });
 }
 

@@ -81,7 +81,7 @@ export class CodelensProvider implements vscode.CodeLensProvider {
                 title,
                 tooltip: "Tooltip provided by sample extension",
                 command: "to.codelensAction",
-                arguments: ["Argument 1", false]
+                arguments: [token, false]
             };
 
             return lens;

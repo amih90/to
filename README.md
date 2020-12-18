@@ -24,6 +24,7 @@ Encode, decode, format and convert everything
   * Binary
   * Hex
   * Url
+  * Datetime
 
 ## Requirements
 
@@ -48,6 +49,9 @@ This extension contributes the following settings:
 TBD
 
 ## Release Notes
+
+### 0.0.10
+- Added onclick decoded token copy to clipboard
 
 ### 0.0.8
 - Added ALL_CAPS, PascalCase
