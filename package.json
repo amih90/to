@@ -161,6 +161,6 @@
     "@types/flatbuffers": "^1.10.0",
     "@types/lodash": "^4.14.158",
     "flatbuffers": "^1.12.0",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.21"
   }
 }
