@@ -1,7 +1,7 @@
 {
   "name": "to",
   "displayName": "To",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "publisher": "amih90",
   "author": {
     "name": "Ami Hollander",
@@ -90,6 +90,11 @@
       {
         "command": "to.string.snakeCase",
         "title": "String.snake_case",
+        "category": "To"
+      },
+      {
+        "command": "to.string.dotCase",
+        "title": "String.dot.case",
         "category": "To"
       },
       {

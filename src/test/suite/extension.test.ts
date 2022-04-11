@@ -3,6 +3,7 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 
 import * as transformer from '../../transformers/transformers';
+import { StringUtils } from '../../utilities/stringUtility';
 
 suite('Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
@@ -17,8 +18,7 @@ suite('Extension Test Suite', () => {
 
         assert.equal(false, base32Transformer.match("AAAAA3A="), "Check empty string");
 
-        assert.equal(true, base32Transformer.match("GE======"), "Check integer - `1`");
-        assert.equal(true, base32Transformer.match("JBSWY3DP"), "Check string - `Hello`");
+        assert.equal(true, base32Transformer.match("JBSWY3DPEBLW64TMMQQQ===="), "Check string - `Hello World!`");
     });
 
     test('Base64 test', () => {
@@ -31,7 +31,16 @@ suite('Extension Test Suite', () => {
 
         assert.equal(false, base64Transformer.match("AAAAA3A="), "Check empty string");
 
-        assert.equal(true, base64Transformer.match("MQ=="), "Check integer - `1`");
-        assert.equal(true, base64Transformer.match("SGVsbG8="), "Check string - `Hello`");
+        assert.equal(true, base64Transformer.match("SGVsbG8gV29ybGQh"), "Check string - `Hello World!`");
+	});
+
+    test('dot.case test', () => {
+        const utils = new StringUtils();
+
+        assert.equal("dot", utils.dotCase("Dot"));
+        assert.equal("dot", utils.dotCase("dot"));
+        assert.equal("dot.case", utils.dotCase("DotCase"));
+        assert.equal("hello.world", utils.dotCase("Hello World!"));
+        assert.equal("dot.case.string", utils.dotCase("DotCaseString"));
 	});
 });

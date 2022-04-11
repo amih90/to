@@ -13,6 +13,7 @@ Encode, decode, format and convert everything
   * Lower case - lowercase
   * Reverse - esrever
   * Snake case - snake_case
+  * Dor case - dot.case
   * Trim - 'trim'
   * Upper case - UPPERCASE
   * Pascal case - PascalCase
@@ -49,6 +50,9 @@ This extension contributes the following settings:
 TBD
 
 ## Release Notes
+
+### 0.0.10
+- Added dot.case
 
 ### 0.0.10
 - Added onclick decoded token copy to clipboard
