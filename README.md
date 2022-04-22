@@ -13,7 +13,7 @@ Encode, decode, format and convert everything
   * Lower case - lowercase
   * Reverse - esrever
   * Snake case - snake_case
-  * Dor case - dot.case
+  * Dot case - dot.case
   * Trim - 'trim'
   * Upper case - UPPERCASE
   * Pascal case - PascalCase
