@@ -40,6 +40,7 @@ suite('Extension Test Suite', () => {
         assert.equal("dot", utils.dotCase("Dot"));
         assert.equal("dot", utils.dotCase("dot"));
         assert.equal("dot.case", utils.dotCase("DotCase"));
+        assert.equal("angle_uint32_t", utils.snakeCase("angleUint32_t"));
         assert.equal("hello.world", utils.dotCase("Hello World!"));
         assert.equal("dot.case.string", utils.dotCase("DotCaseString"));
 	});
