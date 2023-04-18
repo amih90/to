@@ -37,6 +37,10 @@ export class StringUtils extends Utility {
         return _.snakeCase(input).replace(/_/g, ".");
     }
 
+    public whiteSpace(input: string): string {
+        return _.snakeCase(input).replace(/_/g, " ");
+    }
+
     public trim(input: string): string {
         return input.trim();
     }
