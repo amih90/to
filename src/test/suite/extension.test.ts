@@ -43,4 +43,13 @@ suite('Extension Test Suite', () => {
         assert.equal("hello.world", utils.dotCase("Hello World!"));
         assert.equal("dot.case.string", utils.dotCase("DotCaseString"));
 	});
+    test('white__space test', () => {
+        const utils = new StringUtils();
+
+        assert.equal("dot", utils.whiteSpace("Space"));
+        assert.equal("dot", utils.whiteSpace("space"));
+        assert.equal("dot case", utils.whiteSpace("WhiteSpace"));
+        assert.equal("hello world", utils.whiteSpace("Hello World!"));
+        assert.equal("dot case string", utils.whiteSpace("WhiteSpaceString"));
+	});
 });

@@ -18,6 +18,7 @@ Encode, decode, format and convert everything
   * Upper case - UPPERCASE
   * Pascal case - PascalCase
   * All caps - ALL_CAPS
+  * WhiteSpase - white spase
 
 * Transformers:
   * Base32

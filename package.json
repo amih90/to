@@ -98,6 +98,11 @@
         "category": "To"
       },
       {
+        "command": "to.string.whiteSpace",
+        "title": "String.white__space",
+        "category": "To"
+      },
+      {
         "command": "to.string.camelCase",
         "title": "String.camelCase",
         "category": "To"
