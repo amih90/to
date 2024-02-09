@@ -30,7 +30,11 @@ export class StringUtils extends Utility {
     }
 
     public snakeCase(input: string): string {
-        return _.snakeCase(input);
+        var pre_str = _.snakeCase(input);
+        
+        var s = pre_str.replace(/(.*)(int|INT)(\_)(8|16|32|64)(.*)/g, (_, begin, int_part, _underscore, bit_part, after) => 
+        `${begin}${int_part}${bit_part}${after}`);
+        return s;
     }
 
     public dotCase(input: string): string {
