@@ -8,7 +8,7 @@ Encode, decode, format and convert everything
 
 * String utility:
   * Camel case - camelCase
-  * Deburr
+  * Deburr - Convert Latin-1 Supplement and Latin Extended-A letters to basic Latin letters and removing combining diacritical marks
   * Kebab case - kebab-case
   * Lower case - lowercase
   * Reverse - esrever
@@ -18,7 +18,7 @@ Encode, decode, format and convert everything
   * Upper case - UPPERCASE
   * Pascal case - PascalCase
   * All caps - ALL_CAPS
-  * WhiteSpase - white spase
+  * WhiteSpace - white space
 
 * Transformers:
   * Base32
@@ -46,11 +46,10 @@ This extension contributes the following settings:
 
 "1607251583"
 
-## Known Issues
-
-TBD
-
 ## Release Notes
+
+### 0.0.12
+- Added white space
 
 ### 0.0.10
 - Added dot.case
